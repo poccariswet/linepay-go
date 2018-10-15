@@ -37,6 +37,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	// access to message.Info.Web
 	log.Println(message)
 
 	http.HandleFunc("/pay/confirm", func(w http.ResponseWriter, r *http.Request) {
