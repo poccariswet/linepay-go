@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	userID = "U56470f69e2877678040ce7df336dc2eb"
+	userID = os.Getenv("PAY_LINE_USERID")
 )
 
 var (
@@ -30,7 +30,7 @@ func main() {
 		Currency:       "JPY",
 		ConfirmURL:     fmt.Sprintf("https://%s/pay/confirm", hostname),
 		ConfirmURLType: "SERVER",
-		OrderID:        fmt.Sprintf("%s-%s", userID, time.Now().Unix()),
+		OrderID:        fmt.Sprintf("%s-%d", userID, time.Now().Unix()),
 	}
 
 	message, err := pay.Reserve(reservation)

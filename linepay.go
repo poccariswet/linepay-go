@@ -16,8 +16,8 @@ type LinePay struct {
 }
 
 const (
-	ApiVersion         = "v2"
-	SandboxApiHostname = "sandbox-api-pay.line.me"
+	APIVersion         = "v2"
+	SandboxAPIHostname = "sandbox-api-pay.line.me"
 )
 
 func New(channelID, channelSecret string) *LinePay {
@@ -32,6 +32,9 @@ func (pay *LinePay) Post(url string, data []byte) ([]byte, error) {
 	client := &http.Client{}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+	if err != nil {
+		return nil, errors.Wrap(err, "new request err")
+	}
 	req.Header.Set("X-LINE-ChannelId", pay.ChannelID)
 	req.Header.Set("X-LINE-ChannelSecret", pay.ChannelSecret)
 	req.Header.Set("Content-Type", "application/json")
