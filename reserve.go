@@ -1,12 +1,8 @@
 package linepay
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"time"
 
 	"github.com/pkg/errors"
 )
@@ -27,7 +23,7 @@ type PayMessage struct {
 
 type InfoMessage struct {
 	URL                PaymentURL `json:"paymentUrl"`
-	TransactionId      int        `json:"transactionId"`
+	TransactionID      int        `json:"transactionId"`
 	PaymentAccessToken string     `json:"paymentAccessToken"`
 }
 
@@ -43,24 +39,9 @@ func (pay *LinePay) Reserve(reservation Reservation) (*PayMessage, error) {
 		return nil, errors.Wrap(err, "json marshal err")
 	}
 
-	client := &http.Client{
-		Timeout: 3 * time.Second,
-	}
-
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
-	req.Header.Set("X-LINE-ChannelId", pay.ChannelID)
-	req.Header.Set("X-LINE-ChannelSecret", pay.ChannelSecret)
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := client.Do(req)
+	respBody, err := pay.Post(url, data)
 	if err != nil {
-		return nil, errors.Wrap(err, "client do err")
-	}
-	defer resp.Body.Close()
-
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, errors.Wrap(err, "readall err")
+		return nil, errors.Wrap(err, "linepay Pout err")
 	}
 
 	message := &PayMessage{}
