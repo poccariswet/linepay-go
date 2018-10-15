@@ -15,7 +15,6 @@ type Confirmation struct {
 
 func (pay *LinePay) Confirm(transactionID int, confirmation Confirmation) error {
 	url := fmt.Sprintf("https://%s/%s/payments/%d/confirm", SandboxApiHostname, ApiVersion, transactionID)
-	fmt.Println(url)
 
 	data, err := json.Marshal(confirmation)
 	if err != nil {
