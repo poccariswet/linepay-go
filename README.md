@@ -10,6 +10,7 @@ You need to prepare ENV, like this.
 PAY_CHANNEL_ID=""
 PAY_CHANNEL_SECRET_KEY=""
 PAY_HOSTNAME=""
+PAY_LINE_USERID=""
 ```
 
 ## Prepare
