@@ -10,11 +10,8 @@ import (
 	linepay "github.com/soeyusuke/linepay-go"
 )
 
-const (
-	userID = os.Getenv("PAY_LINE_USERID")
-)
-
 var (
+	userID   = os.Getenv("PAY_LINE_USERID")
 	hostname = os.Getenv("PAY_HOSTNAME")
 )
 
