@@ -33,7 +33,7 @@ type PaymentURL struct {
 }
 
 func (pay *LinePay) Reserve(reservation Reservation) (*PayMessage, error) {
-	url := fmt.Sprintf("https://%s/%s/payments/request", SandboxApiHostname, ApiVersion)
+	url := fmt.Sprintf("https://%s/%s/payments/request", SandboxAPIHostname, APIVersion)
 	data, err := json.Marshal(reservation)
 	if err != nil {
 		return nil, errors.Wrap(err, "json marshal err")
