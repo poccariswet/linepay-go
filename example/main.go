@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	linepay "github.com/soeyusuke/linepay-go"
+	linepay "github.com/poccariswet/linepay-go"
 )
 
 var (
