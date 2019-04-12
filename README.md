@@ -15,7 +15,7 @@ PAY_LINE_USERID=""
 
 ## Prepare
 
-I recommend using [ngrok](https://ngrok.com/), so you should download before you try to linepay.
+Recommend using [ngrok](https://ngrok.com/), so it should download before try to linepay.
 
 ## License
 
